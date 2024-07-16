@@ -1,0 +1,17 @@
+1. User:
+- Đăng ký, Đăng nhập /
+- Xem danh sách (Hiện 1 ảnh và tên) /
+- Xem chi tiết sản phẩm (Xem nhiều ảnh) /
+- Tìm kiếm theo tên, thể loại
+- Tạo giỏ hàng, thêm sản phẩm vào giỏ hàng (cập nhập số lượng) /
+
+2. Admin: 
+- Đăng nhập /
+- CRUD sản phẩm /
+- CRUD thể loại /
+- Xem danh sách giỏ hàng /
+
+home/products -> ko cần login nhma phải login mới thêm sản phẩm
+home/products/detail/:id
+home/your-cart -> phải login mới có
+home/

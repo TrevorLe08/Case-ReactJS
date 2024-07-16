@@ -1,0 +1,71 @@
+/* Delete all if install tailwind CSS */
+
+/* base */
+body {
+    margin: 0;
+}
+table {
+    font-family: sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+  
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+/* components */ 
+
+.pointer {
+    cursor: pointer;
+}
+.text-center {
+    text-align: center;
+}
+.mt {
+    margin-top : 10px;
+}
+.flex {
+    display: flex;
+}
+.justify-content-between {
+    justify-content: space-between;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.justify-content-start {
+    justify-content: start;
+}
+.outlet {
+    margin: 10px;
+    padding-top: 60px;
+}
+.size-20 {
+    font-size: 20px
+}
+.flex-column {
+    flex-direction: column;
+}
