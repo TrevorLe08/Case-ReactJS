@@ -4,7 +4,7 @@ import { getProduct } from '../../../service/productService'
 import { getCarts, updateCart } from '../../../service/cartService'
 import { useNavigate } from 'react-router-dom'
 import HeaderSearch from '../../../components/User/HeaderSearch'
-import './Product.css'
+import '../../../style/user/store/Product.css'
 
 export default function UserProduct() {
   const navigate = useNavigate()
@@ -70,19 +70,31 @@ export default function UserProduct() {
   }, [dispatch])
 
   return (
-    <div>
-      {isLogged && <h3>Số lượng sản phẩm trong giỏ hàng: {yourCart.amount}</h3>}
-      <HeaderSearch />
-      <div className='wrapper'>
-          {searchList.map((product) => (
-            <div className='card' key={product.id}>
-              <img className="image" src={product.images[0]} alt="Demo product" />
-              <h2>{product.name}</h2>
-              <h2>{product.price}.000 VNĐ</h2>
-              <button className="btn-card" onClick={() => handleAddProduct(product)}>Add to cart</button>
-              <button className="btn-card" onClick={() => navigate(`/home/products/detail/${product.id}`)}>View</button>
-            </div>
-          ))}
+    <div className='grid md:grid-cols-3 xl:grid-cols-4'>
+      <div className='sidebar-user'>
+        {isLogged && <h3 className='text-lg font-bold'>Số lượng sản phẩm trong giỏ hàng: {yourCart.amount}</h3>}
+        <HeaderSearch />
+      </div>
+      <div className='md:col-end-4 md:col-start-2 xl:col-end-5'>
+        <div className='pl-4 grid grid-cols-2 xl:grid-cols-4 gap-[10px]'>
+          {searchList.length === 0 ? (
+            <p className='text-2xl font-bold text-center'>Nothing here ._.</p>
+          ) : (
+            <>
+              {searchList.map((product) => (
+                <div>
+                  <div className='card mx-auto' key={product.id}>
+                    <img className="image-card" src={product.images[0]} alt="Demo product" />
+                    <h2 className='text-xl font-bold'>{product.name}</h2>
+                    <h2 className='text-xl font-bold mb-2'>{product.price}.000 VNĐ</h2>
+                    <button className="btn-card" onClick={() => handleAddProduct(product)}>Thêm</button>
+                    <button className="btn-card" onClick={() => navigate(`/home/store/detail/${product.id}`)}>Chi tiết</button>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
       </div>
     </div>
   )

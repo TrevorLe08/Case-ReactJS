@@ -1,0 +1,51 @@
+@tailwind components;
+
+@layer components {
+
+    /* List Categories */
+    .btn-add-category {
+        @apply px-3 py-2 text-primary border-2 border-primary rounded-md 
+        mb-2 w-40 font-medium transition duration-200 ease-in-out cursor-pointer
+        hover:bg-primary hover:text-white
+    }
+    .category-table {
+        @apply font-sans border-collapse min-w-full
+    }
+    .category-th {
+        @apply py-3 uppercase border-2 border-[#dddddd]
+    }
+    .category-td {
+        @apply text-center py-2 text-base border-2 border-[#dddddd]
+    }
+    .btn-table-category {
+        @apply px-1.5 py-1 border-2 rounded-md mr-2 font-medium transition
+        duration-200 ease-in-out cursor-pointer
+    }
+
+    /* Add category */
+    .btn-back {
+        @apply px-3 py-2 text-primary border-2 border-primary rounded-md 
+        mb-2 font-medium transition duration-200 ease-in-out cursor-pointer
+        hover:bg-primary hover:text-white
+    }
+    .wrapper {
+        @apply flex justify-center
+    }
+    .form-category {
+        @apply flex flex-col bg-white px-10 py-6 rounded-lg shadow-2xl w-[400px]
+    }
+    .form-label {
+        @apply text-lg font-medium
+    }
+    .form-input {
+        @apply px-2 py-2 mb-2 border-b-2 border-b-gray-600 outline-0 
+        placeholder:text-gray-600 transition duration-200 ease-in-out
+        focus:border-b-primary focus:placeholder:text-primary w-56
+        focus:text-primary
+    }
+    .btn-submit {
+        @apply px-3 py-2 text-primary border-2 border-primary rounded-md 
+        mb-2 font-medium w-1/3 mx-auto transition duration-200 ease-in-out cursor-pointer
+        hover:bg-primary hover:text-white
+    }
+}

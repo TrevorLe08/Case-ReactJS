@@ -10,21 +10,24 @@ export default function AddCategory() {
     let submitForm = (e) => {
         e.preventDefault()
         const value = inputRef.current.value
-        dispatch(createCategory({name: value})).then(() => {
+        dispatch(createCategory({ name: value })).then(() => {
             alert("Thêm thành công")
             navigate("/admin/categories")
         })
     }
-  return (
-    <div>
-        <h2>Add Category</h2>
-        <button onClick={() => navigate("/admin/categories")}>Back</button>
-        <br />
-        <br />
-        <form onSubmit={submitForm}>
-            <input type="text" placeholder='New category...' ref={inputRef}/>
-            <button>Add</button>
-        </form>
-    </div>
-  )
+    return (
+        <div>
+            <button className='btn-back mx-2 bg-transparent' onClick={() => navigate("/admin/categories")}>Back</button>
+            <div className='wrapper'>
+                <form className='form-category' onSubmit={submitForm}>
+                    <p className='text-2xl font-medium text-center'>Add Category</p>
+                    <div>
+                        <label className='form-label mr-7' htmlFor="name" >Name:</label>
+                        <input className='form-input' type="text" placeholder='New category...' ref={inputRef} />
+                    </div>
+                    <button className='btn-submit mt-2'>Add</button>
+                </form>
+            </div>
+        </div>
+    )
 }

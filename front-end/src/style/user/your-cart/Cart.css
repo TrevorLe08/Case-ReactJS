@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+    .cart-table {
+        @apply font-sans border-collapse min-w-full mt-[10px]
+    }
+    .cart-table-th {
+        @apply px-6 py-3 uppercase text-start text-gray-500 border-b-[1px] border-b-[#dddddd]
+    }
+    .cart-table-td {
+        @apply px-6 py-4 whitespace-nowrap text-lg
+    }
+}
+
+

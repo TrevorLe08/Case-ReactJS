@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+    .select-search {
+        @apply h-8 text-lg rounded-lg border-black border-[1px] 
+    }
+    .search-icon {
+        @apply rounded-l-md border-[1px] border-black bg-[#e6e6e6] 
+        text-lg px-2 py-[5px] cursor-default
+    }
+    .input-search {
+        @apply h-10 my-1 w-56 text-lg rounded-r-md border-[1px] border-black p-2
+        border-l-0 transition duration-200 ease-in-out
+    }
+}

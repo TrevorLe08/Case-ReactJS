@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { findCategory, findSearch } from '../../redux/slices/productsSlice'
 import { getCategory } from '../../service/categoryService'
-import './HeaderSearch.css'
+import '../../style/user/header/HeaderSearch.css'
 
 export default function HeaderSearch() {
     const dispatch = useDispatch()
@@ -21,7 +21,8 @@ export default function HeaderSearch() {
 
     return (
         <>
-            <h2>Tìm kiếm:
+            <div className='mt-2'>
+                <p className='text-xl font-bold mr-2 font-sans'>Tìm kiếm:</p>
                 <button className='search-icon'>
                     <i className="bi bi-search"></i>
                 </button>
@@ -32,8 +33,9 @@ export default function HeaderSearch() {
                     ref={inputRef}
                     onChange={() => handleSearch()}
                 />
-            </h2>
-            <h2>Danh mục:
+            </div>
+            <div className='mb-4 mt-3'>
+                <span className='text-xl font-bold mr-2 font-sans'>Danh mục:</span>
                 <select
                     className='select-search'
                     onChange={(e) => dispatch(findCategory(e.target.value))}
@@ -47,7 +49,7 @@ export default function HeaderSearch() {
                         >{category.name}</option>
                     ))}
                 </select>
-            </h2>
+            </div>
         </>
     )
 }

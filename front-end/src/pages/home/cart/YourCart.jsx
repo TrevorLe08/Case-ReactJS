@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCarts, updateCart } from '../../../service/cartService'
 import { getProduct } from '../../../service/productService'
 import { useNavigate } from 'react-router-dom'
-import './Cart.css'
+import '../../../style/user/your-cart/Cart.css'
 
 export default function YourCart() {
     const navigate = useNavigate()
@@ -96,76 +96,85 @@ export default function YourCart() {
     }, [dispatch])
     return (
         <>
-            {!isLogged ? <h2 className='text-center'>Đăng nhập để mua hàng nhá bạn :v </h2>
+            {!isLogged ? <h2 className='text-center font-bold text-2xl'>Đăng nhập để mua hàng nhá bạn :v </h2>
                 : (
-                    <Fragment>
-                        {currentUser.isAdmin ? <h2 className='text-center'>Admin không tự mua hàng nha ní:v</h2>
+                    <>
+                        {currentUser.isAdmin ? <h2 className='text-center font-bold text-2xl'>Admin không tự mua hàng nha ní:v</h2>
                             : (
-                                <Fragment>
+                                <>
                                     {yourCart.products.length === 0 ? (
-                                        <div className='text-center'>
+                                        <div className='text-center font-bold text-2xl'>
                                             <h2>Giỏ hàng hiện đang trống</h2>
-                                            <p className='pointer' onClick={() => navigate("/home/products")}>🡠 Bắt đầu mua sắm</p>
+                                            <p className='cursor-pointer text-base font-medium' onClick={() => navigate("/home/store")}>🡠 Bắt đầu mua sắm</p>
                                         </div>
                                     ) : (
-                                        <Fragment>
+                                        <>
                                             <div>
-                                                <h2>Giỏ hàng của {yourCart.user.name}</h2>
-                                                <h2>Sản phẩm đã thêm: </h2>
-                                                <table>
+                                                <h2 className='text-xl font-medium'>Giỏ hàng của {yourCart.user.name}</h2>
+                                                <h2 className='text-xl font-medium'>Sản phẩm đã thêm: </h2>
+                                                <table className='cart-table'>
                                                     <thead>
                                                         <tr>
-                                                            <th className='cart-table'>STT</th>
-                                                            <th className='cart-table'>Tên</th>
-                                                            <th className='cart-table'>Giá</th>
-                                                            <th className='cart-table'>Số lượng</th>
-                                                            <th className='cart-table'>Tổng</th>
-                                                            <th className='cart-table'>Xóa</th>
+                                                            <th className='cart-table-th'>STT</th>
+                                                            <th scope='col' className='cart-table-th'>Tên</th>
+                                                            <th scope='col' className='cart-table-th'>Giá</th>
+                                                            <th scope='col' className='cart-table-th'>Số lượng</th>
+                                                            <th scope='col' className='cart-table-th'>Tổng</th>
+                                                            <th scope='col' className='cart-table-th text-end'>Xóa</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         {yourCart.products.map((product, index) => (
-                                                            <tr>
-                                                                <td className='cart-table'>{index + 1}</td>
-                                                                <td className='cart-table'>{product.name}</td>
-                                                                <td className='cart-table'>{product.price}k</td>
-                                                                <td className='cart-table cart-quantity flex justify-content-start'>
-                                                                    <div>
-                                                                        <button onClick={() => handleChange(product, 'decrease')}>-</button>
-                                                                        <span>{product.quantity}</span>
-                                                                        <button onClick={() => handleChange(product, 'increase')}>+</button>
+                                                            <tr className='odd:bg-white even:bg-gray-100 hover:bg-gray-100'>
+                                                                <td className='cart-table-td font-medium'>{index + 1}</td>
+                                                                <td className='cart-table-td'>{product.name}</td>
+                                                                <td className='cart-table-td'>{product.price}k</td>
+                                                                <td className='cart-table-td flex justify-start'>
+                                                                    <div className='border-[0.5px] border-gray-500 rounded w-[100px] flex justify-center items-center'>
+                                                                        <button
+                                                                            className='text-lg cursor-pointer font-medium'
+                                                                            onClick={() => handleChange(product, 'decrease')}
+                                                                        >-</button>
+                                                                        <span className='px-3'>{product.quantity}</span>
+                                                                        <button
+                                                                            className='text-lg cursor-pointer font-medium'
+                                                                            onClick={() => handleChange(product, 'increase')}
+                                                                        >+</button>
                                                                     </div>
                                                                 </td>
-                                                                <td className='cart-table'>{product.quantity * product.price}k</td>
-                                                                <td className='cart-table'>
+                                                                <td className='cart-table-td'>{product.quantity * product.price}k</td>
+                                                                <td className='cart-table-td text-end'>
                                                                     <button
-                                                                        className='cart-btn-remove'
+                                                                        className='px-2 py-1 bg-white border-2 border-red-600 rounded transition duration-300 ease-in-out hover:bg-red-600'
                                                                         onClick={() => handleRemove(product, dispatch)}
                                                                     >
-                                                                        <i className="bi bi-trash"></i>
+                                                                        <i className="bi bi-trash text-red-600 transition duration-300 ease-in-out hover:text-white"></i>
                                                                     </button>
                                                                 </td>
                                                             </tr>
                                                         ))}
                                                     </tbody>
                                                 </table>
-                                                <div className="flex justify-content-between" >
+                                                <div className="flex justify-between mt-2" >
                                                     <div>
-                                                        <button className='mt cart-btn-clear' onClick={handleRemoveAll} >Xóa tất cả sản phẩm</button>
+                                                        <button
+                                                            className='px-3 py-2 bg-white border-2 border-red-600 text-red-600 font-medium rounded transition duration-300 ease-in-out hover:bg-red-600 hover:text-white'
+                                                            onClick={handleRemoveAll}
+                                                        >Xóa tất cả sản phẩm</button>
                                                     </div>
                                                     <div>
-                                                        <h2>Tổng tiền: {yourCart.total}.000 VND</h2>
-                                                        <h2>Tổng số lượng: {yourCart.amount}</h2>
-                                                        <button>Thanh toán</button>
-                                                        <p className='pointer' onClick={() => navigate("/home/products")}>🡠 Tiếp tục mua hàng</p>
+                                                        <p className='text-xl font-medium'>Tổng tiền: {yourCart.total}.000 VND</p>
+                                                        <p className='text-xl font-medium'>Tổng số lượng: {yourCart.amount}</p>
+                                                        <button className='px-3 py-2 bg-primary text-white rounded my-2'>Thanh toán</button>
+                                                        <p className='cursor-pointer' onClick={() => navigate("/home/store")}>🡠 Tiếp tục mua hàng</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </Fragment>
+                                        </>
                                     )}
-                                </Fragment>
+                                </>
                             )}
-                    </Fragment>
+                    </>
                 )}
         </>
     )

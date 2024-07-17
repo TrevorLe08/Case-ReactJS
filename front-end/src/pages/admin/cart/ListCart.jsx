@@ -9,36 +9,34 @@ export default function ListCart() {
     useEffect(() => {
         const getData = () => dispatch(getCarts())
         getData()
-    }, [])
+    }, [dispatch])
     return (
-        <div>
-            <h2>List Cart</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Khách hàng</th>
-                        <th>Tổng tiền</th>
-                        <th>Thời gian</th>
-                        <th>Chi tiết</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {carts.map((cart, index) => {
-                        // As some unknown reason , cart.user is undefined before render
-                        const { name } = cart.user
-                        return (
-                            <tr>
-                                <td>{index + 1}</td>
-                                <td>{name}</td>
-                                <td>{cart.total}k</td>
-                                <td>{cart.date}</td>
-                                <td><button>Detail</button></td>
+        <div className='m-2'>
+            <div className='bg-white p-4 mt-[10px] rounded-md'>
+                <p className='text-lg font-medium text-primary'># List Cart</p>
+                <table className='cart-table'>
+                    <thead>
+                        <tr>
+                            <th className='cart-th'>#</th>
+                            <th className='cart-th'>User</th>
+                            <th className='cart-th'>Total</th>
+                            <th className='cart-th'>Amount</th>
+                            <th className='cart-th'>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {carts.map((cart, index) => (
+                            <tr key={index}>
+                                <td className='cart-td'>{index + 1}</td>
+                                <td className='cart-td'>{cart.user.name}</td>
+                                <td className='cart-td'>{cart.total}k</td>
+                                <td className='cart-td'>{cart.amount}</td>
+                                <td className='cart-td'>{cart.date}</td>
                             </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

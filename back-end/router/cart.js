@@ -9,7 +9,7 @@ const carts = [
         amount: 1,
         date: new Date().toISOString(),
         products: [
-            { id: 1, name: 'Iphone 14 promax', quantity: 1, price: 30000 }
+            { id: 1, name: 'Iphone 14 Promax', quantity: 1, price: 30000 }
         ]
     },
     {
@@ -19,8 +19,8 @@ const carts = [
         amount: 2,
         date: new Date().toISOString(),
         products: [
-            { id: 2, name: 'SGK Toán lớp 10', quantity: 1, price: 20 },
-            { id: 3, name: 'Vợt cầu lông Kumpoo', quantity: 1, price: 500 }
+            { id: 2, name: 'Bút chì bảy màu', quantity: 1, price: 20 },
+            { id: 3, name: 'Vợt cầu lông', quantity: 1, price: 500 }
         ]
     }
 ];

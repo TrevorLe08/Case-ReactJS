@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .card-dashboard {
+        @apply bg-white rounded-lg w-auto h-28 border-l-4 flex justify-between items-center px-4 shadow-xl
+    }
+}

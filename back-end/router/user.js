@@ -6,26 +6,22 @@ const users = [
         id: 1,
         name: 'Administrator',
         username: 'admin',
-        password: '123456',
+        password: '12345678',
         isAdmin: true
     }, {
         id: 2,
         name: 'Trevor Le',
         username: 'trevor',
-        password: 'abc',
+        password: '12345678',
         isAdmin: false
     },{
         id: 3,
         name: 'LTMT',
         username: 'ltmt',
-        password: '123',
+        password: '12345678',
         isAdmin: false
     },
 ];
-
-router.get("/", (req, res) => {
-    res.json(users);
-});
 
 router.post("/register", (req, res) => {
     const { name, username, password } = req.body;

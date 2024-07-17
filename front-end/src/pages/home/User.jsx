@@ -6,7 +6,6 @@ export default function User() {
 
     return (
         <>
-            {/* NavBar User */}
             <NavBar />
             <div className='outlet'>
                 <Outlet />

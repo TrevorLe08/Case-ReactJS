@@ -1,0 +1,13 @@
+@tailwind components;
+
+@layer components {
+    .cart-table {
+        @apply font-sans border-collapse min-w-full
+    }
+    .cart-th {
+        @apply py-3 uppercase border-2 border-[#dddddd]
+    }
+    .cart-td {
+        @apply text-center py-2 text-base border-2 border-[#dddddd]
+    }
+}

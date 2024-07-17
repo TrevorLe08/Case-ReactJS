@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, NavLink } from 'react-router-dom';
 import { logOut } from '../../redux/slices/usersSlice';
-import './NavBar.css'
 import { getCarts } from '../../service/cartService';
+import '../../style/user/navbar/NavBar.css'
 
 export default function NavBar() {
     let navigate = useNavigate()
@@ -13,21 +13,29 @@ export default function NavBar() {
     const yourCart = carts.find(cart => cart.user.username === currentUser.username)
     const navList = [
         {
-            label: 'Home',
+            label: (
+                <>
+                    <span className='mr-2'>Home</span>
+                    <i class="bi bi-house-door"></i>
+                </>
+            ),
             link: '/home/us'
         }, {
-            label: <i className="bi bi-shop"></i>,
-            link: '/home/products'
+            label: (
+                <>
+                    <span className='mr-2'>Store</span>
+                    <i className="bi bi-shop"></i>
+                </>
+            ),
+            link: '/home/store'
         }, {
-            label: 
-            (<>
-                <i className="bi bi-cart"></i>
-                <span className='amount-cart'>{yourCart.amount}</span>
-            </>),
+            label:
+                (<>
+                    <span className='mr-2'>Cart</span>
+                    <i className="bi bi-cart"></i>
+                    <span className='amount-cart'>{isLogged && yourCart.amount}</span>
+                </>),
             link: '/home/your-cart'
-        }, {
-            label: 'About',
-            link: '/home/about'
         }
     ]
 
@@ -45,8 +53,11 @@ export default function NavBar() {
                     <button className='user-btn-login' onClick={() => navigate("/register")}>Register</button>
                 </div>
             ) : (
-                <div className='user-group'>
-                    <h2 className='user-info'><i className="bi bi-person-circle"></i> : {currentUser.name}</h2>
+                <div className='flex text-center'>
+                    <h2 className='user-info'>
+                        <i className="bi bi-person-circle" />
+                        {currentUser.name}
+                    </h2>
                     <div>
                         <button className='user-btn-logout' onClick={() => dispatch(logOut())}>Log out</button>
                     </div>
@@ -59,7 +70,7 @@ export default function NavBar() {
                             <NavLink
                                 to={item.link}
                                 className='nav-item'
-                                style={({ isActive }) => isActive ? { color: '#fff', background: '#008CBA' } : { color: 'black', background: '#E8E8E8' }}
+                                style={({ isActive }) => isActive ? { background: '#008CBA' } : { background: 'transparent' }}
                             ><span className='size-20'>{item.label}</span></NavLink>
                         </li>
                     ))}

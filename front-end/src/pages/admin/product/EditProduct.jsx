@@ -11,7 +11,6 @@ export default function EditProduct() {
     const { id } = useParams()
     const { currentProduct } = useSelector(state => state.product)
     const { categories } = useSelector(state => state.category)
-    const categoryName = currentProduct.category.name
 
     useEffect(() => {
         const getData = () => {
@@ -19,11 +18,13 @@ export default function EditProduct() {
             dispatch(getCategory())
         }
         getData()
-    }, [])
+    }, [dispatch])
     return (
         <div>
-            <h2>Edit product {id}</h2>
-            <button onClick={() => navigate("/admin/products")}>Back</button>
+            <button className='btn-back mx-2 bg-transparent' onClick={() => navigate("/admin/products")}>
+                <i className="bi bi-arrow-return-left mr-2"></i>
+                <span>Back</span>
+            </button>
             <Formik
                 initialValues={currentProduct}
                 enableReinitialize={true}
@@ -34,7 +35,6 @@ export default function EditProduct() {
                             id: categories.find(e => e.name === values.category.name).id,
                             name: values.category.name
                         },
-                        images: []
                     }
                     dispatch(updateProduct(values)).then(() => {
                         alert("Lưu thành công")
@@ -42,17 +42,32 @@ export default function EditProduct() {
                     })
                 }}
             >
-                <Form>
-                    <Field name='name' placeholder='Name' />
-                    <Field name='price' placeholder='Price' type="number" />
-                    <Field name='quantity' placeholder='quantity' type="number" />
-                    <Field as="select" name='category.name'>
-                        {categories.map((category) => (
-                            <option value={category.name} key={category.id}>{category.name}</option>
-                        ))}
-                    </Field>
-                    <button type='submit'>Save</button>
-                </Form>
+                <div className="wrapper">
+                    <Form className='form-product'>
+                        <p className='text-2xl font-medium text-center'>Edit Product ID: {id}</p>
+                        <div>
+                            <label htmlFor="name" className='form-label mr-7'>Name:</label>
+                            <Field className="form-input" name='name' placeholder='Enter name...' />
+                        </div>
+                        <div>
+                            <label htmlFor="price" className='form-label mr-9'>Price:</label>
+                            <Field className="form-input" name='price' placeholder='Enter price...' type="number" />
+                        </div>
+                        <div>
+                            <label htmlFor="quantity" className='form-label mr-2'>Quantity:</label>
+                            <Field className="form-input" name='quantity' placeholder='Enter quantity...' type="number" />
+                        </div>
+                        <div>
+                            <label className="form-label mr-2 ">Category:</label>
+                            <Field as="select" name='category.name' className="form-select mb-4 mt-2">
+                                {categories.map((category) => (
+                                    <option value={category.name} key={category.id}>{category.name}</option>
+                                ))}
+                            </Field>
+                        </div>
+                        <button className='btn-submit' type='submit'>Save</button>
+                    </Form>
+                </div>
             </Formik>
         </div>
     )

@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './App.css';
 import Login from './pages/login-register/Login';
 import Register from './pages/login-register/Register';
 import User from './pages/home/User';
@@ -24,7 +23,7 @@ import UserProduct from './pages/home/product/UserProduct';
 import ViewProduct from './pages/home/product/ViewProduct';
 import YourCart from './pages/home/cart/YourCart';
 import HomeUser from './pages/home/HomeUser';
-import About from './pages/home/About';
+import './App.css'
 
 function App() {
   const { currentUser } = useSelector(state => state.user)
@@ -36,11 +35,10 @@ function App() {
 
         {/*User zones*/}
         <Route path='/home' element={<User />} >
-          <Route exact path='us' element={<HomeUser />} />
-          <Route path='products' element={<UserProduct />} />
-          <Route path='products/detail/:id' element={<ViewProduct />} />
+          <Route path='us' element={<HomeUser />} />
+          <Route path='store' element={<UserProduct />} />
+          <Route path='store/detail/:id' element={<ViewProduct />} />
           <Route path='your-cart' element={<YourCart />} />
-          <Route path='about' element={<About />} />
         </Route>
 
         {/*Admin zones*/}

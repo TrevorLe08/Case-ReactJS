@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+    .form-login {
+        @apply max-w-[400px] bg-[rgba(0,0,0,0.8)] flex-grow py-[30px] px-[40px]
+        shadow-login rounded-[10px]
+    }
+    .input-login {
+        @apply block bg-transparent border-b-2 border-b-white w-full text-white
+        flex-grow mb-5 pb-3 outline-none placeholder:text-white transition duration-300
+        ease-out focus:text-[#54a0ff] focus:border-b-2 focus:border-b-[#54a0ff]
+        focus:placeholder:text-[#54a0ff]
+    }
+    .btn-form-login {
+        @apply block rounded items-center bg-transparent border-2 border-[#f5f5f5]
+        text-[#f5f5f5] w-52 text-base px-3 py-2 transition duration-300 ease-out
+        hover:border-[#54a0ff] hover:text-[#54a0ff]
+    }
+}

@@ -21,30 +21,48 @@ export default function ListCategory() {
     getData()
   }, [])
   return (
-    <div>
-      <h2>List category</h2>
-      <button onClick={() => navigate("/admin/categories/add")}>Add</button><table>
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Tên</th>
-            <th>Xóa</th>
-            <th>Chi tiết</th>
-            <th>Chỉnh sửa</th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((item, index) => (
+    <div className='m-2'>
+      <div className='bg-white p-4 mt-[10px] rounded-md'>
+        <p className='text-blue-500 font-medium mb-2 ml-1 cursor-default'># List category</p>
+        <button onClick={() => navigate("/admin/categories/add")} className='btn-add-category'>Add Category</button>
+        <table className='category-table'>
+          <thead>
             <tr>
-              <td>{index + 1}</td>
-              <td>{item.name}</td>
-              <td><button onClick={() => handleDelete(item.id)}>Delete</button></td>
-              <td><button onClick={() => navigate(`/admin/categories/detail/${item.id}`)}>Detail</button></td>
-              <td><button onClick={() => navigate(`/admin/categories/edit/${item.id}`)}>Edit</button></td>
+              <th className='category-th'>#</th>
+              <th className='category-th'>Name</th>
+              <th className='category-th'>Delete</th>
+              <th className='category-th'>Detail</th>
+              <th className='category-th'>Edit</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {categories.map((item, index) => (
+              <tr>
+                <td className='category-td'>{index + 1}</td>
+                <td className='category-td'>{item.name}</td>
+                <td className='category-td'>
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className='btn-table-category text-red-600 border-red-600 hover:bg-red-600 hover:text-white'
+                  >Delete</button>
+                </td>
+                <td className='category-td'>
+                  <button
+                    onClick={() => navigate(`/admin/categories/detail/${item.id}`)}
+                    className='btn-table-category text-green-500 border-green-500 hover:bg-green-500 hover:text-white'
+                  >Detail</button>
+                </td>
+                <td className='category-td'>
+                  <button
+                    onClick={() => navigate(`/admin/categories/edit/${item.id}`)}
+                    className='btn-table-category text-yellow-600 border-yellow-600 hover:bg-yellow-600 hover:text-white'
+                  >Edit</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
